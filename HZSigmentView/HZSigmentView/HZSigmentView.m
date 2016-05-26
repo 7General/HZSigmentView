@@ -36,7 +36,7 @@
         self.titleNomalColor = DDMColor(80, 80, 80);
         self.titleSelectColor = DDMColor(30, 137, 255);
         self.BackScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, DDMWIDTH, self.frame.size.height)];
-        self.BackScrollView.backgroundColor = [UIColor redColor];//DDMColor(224, 224, 224);
+        self.BackScrollView.backgroundColor = DDMColor(224, 224, 224);
         self.BackScrollView.showsHorizontalScrollIndicator = NO;
         
         [self addSubview:self.BackScrollView];

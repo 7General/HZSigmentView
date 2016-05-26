@@ -20,6 +20,12 @@
 @protocol HZSigmentViewDelegate <NSObject>
 
 @optional
+/**
+ *  点击横向点击事件
+ *
+ *  @param sengment sengment对象
+ *  @param index    点击的索引
+ */
 -(void)segment:(HZSigmentView *)sengment didSelectColumnIndex:(NSInteger)index;
 
 @end

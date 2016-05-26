@@ -20,10 +20,13 @@
     self.title = @"HZSigmentView";
     
     NSLog(@"------%ld",self.navigationController.navigationBar.translucent);
+    // 原点从（0，64）开始
+//    self.navigationController.navigationBar.translucent = NO;
+    // 原点从（0，0）开始
+    self.automaticallyAdjustsScrollViewInsets = NO;
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    self.navigationController.navigationBar.translucent = NO;
-    
-    self.sigment = [[HZSigmentView alloc] initWithOrgin:CGPointMake(0, 0) andHeight:44];
+    self.sigment = [[HZSigmentView alloc] initWithOrgin:CGPointMake(0, 64) andHeight:44];
     self.sigment.delegate = self;
     self.sigment.titleArry = @[@"核桃",@"苹果",@"橘子",@"橙子",@"人民",@"打印机",@"电脑"];
     
@@ -40,6 +43,8 @@
     [self.view addSubview:self.sigment];
     
 }
-
+-(void)segment:(HZSigmentView *)sengment didSelectColumnIndex:(NSInteger)index {
+    NSLog(@"-----%ld",index);
+}
 
 @end
