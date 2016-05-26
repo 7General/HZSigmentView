@@ -16,6 +16,7 @@
 		25CD2B311CF6E12C00AE499C /* HZSigmentViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CD2B301CF6E12C00AE499C /* HZSigmentViewTests.m */; };
 		25CD2B3C1CF6E12C00AE499C /* HZSigmentViewUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CD2B3B1CF6E12C00AE499C /* HZSigmentViewUITests.m */; };
 		25CD2B4D1CF6E1FB00AE499C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CD2B4C1CF6E1FB00AE499C /* MainViewController.m */; };
+		25CD2B511CF6E2B800AE499C /* HZSigmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 25CD2B501CF6E2B800AE499C /* HZSigmentView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		25CD2B3D1CF6E12C00AE499C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25CD2B4B1CF6E1FB00AE499C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		25CD2B4C1CF6E1FB00AE499C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		25CD2B4F1CF6E2B800AE499C /* HZSigmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HZSigmentView.h; sourceTree = "<group>"; };
+		25CD2B501CF6E2B800AE499C /* HZSigmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HZSigmentView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 		25CD2B4E1CF6E23100AE499C /* HZSigmentView */ = {
 			isa = PBXGroup;
 			children = (
+				25CD2B4F1CF6E2B800AE499C /* HZSigmentView.h */,
+				25CD2B501CF6E2B800AE499C /* HZSigmentView.m */,
 			);
 			name = HZSigmentView;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				25CD2B1B1CF6E12C00AE499C /* AppDelegate.m in Sources */,
 				25CD2B181CF6E12C00AE499C /* main.m in Sources */,
 				25CD2B4D1CF6E1FB00AE499C /* MainViewController.m in Sources */,
+				25CD2B511CF6E2B800AE499C /* HZSigmentView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
