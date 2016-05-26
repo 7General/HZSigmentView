@@ -19,7 +19,7 @@
     [super viewDidLoad];
     self.title = @"HZSigmentView";
     
-//    NSLog(@"------%ld",self.navigationController.navigationBar.translucent);
+    NSLog(@"------%ld",self.navigationController.navigationBar.translucent);
     
     self.navigationController.navigationBar.translucent = NO;
     
