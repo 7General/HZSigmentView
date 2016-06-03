@@ -30,51 +30,48 @@
     if (self) {
         self.menuHeight = height;
         self.defaultIndex = 1;
-        
+        self.translatesAutoresizingMaskIntoConstraints = YES;
         self.titleFont = [UIFont systemFontOfSize:15];
         self.btnArrys = [[NSMutableArray alloc] initWithCapacity:0];
-        self.titleNomalColor = DDMColor(80, 80, 80);
-        self.titleSelectColor = DDMColor(30, 137, 255);
-        self.BackScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, DDMWIDTH, self.frame.size.height)];
+        self.titleColorNormal = DDMColor(80, 80, 80);
+        self.titleColorSelect = DDMColor(30, 137, 255);
+        self.bottomLineColor = DDMColor(255, 0, 0);
+        self.titleLineColor = DDMColor(10, 108, 255);
+        
+        self.BackScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, DDMWIDTH, self.menuHeight)];
         self.BackScrollView.backgroundColor = DDMColor(224, 224, 224);
         self.BackScrollView.showsHorizontalScrollIndicator = NO;
-        
         [self addSubview:self.BackScrollView];
-
         
         [self registerForKVO];
     }
     return self;
 }
 -(void)registerForKVO {
-    //[self addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:nil];
-    //[self addObserver:self forKeyPath:@"titleFont" options:NSKeyValueObservingOptionNew context:nil];
     for (NSString *keyPath in [self observableKeypaths]) {
         [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew context:NULL];
     }
 }
 
 - (NSArray *)observableKeypaths {
-    return [NSArray arrayWithObjects: @"titleNomalColor", @"titleSelectColor", @"titleFont", @"defaultIndex", nil];
+    return [NSArray arrayWithObjects: @"titleColorNormal", @"titleColorSelect", @"titleFont", @"defaultIndex",@"bottomLineColor",@"titleLineColor", nil];
 }
 
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
-    
     [self updateUIForKeypath:keyPath];
-   
 }
-
+/**观察改变属性*/
 - (void)updateUIForKeypath:(NSString *)keyPath {
-    if([keyPath isEqualToString:@"titleNomalColor"])
+    if([keyPath isEqualToString:@"titleColorNormal"])
     {
         [self updaeViewUI:^(UIButton *btn) {
-            [btn setTitleColor:self.titleNomalColor forState:UIControlStateNormal];
+            [btn setTitleColor:self.titleColorNormal forState:UIControlStateNormal];
         }];
-    }else if([keyPath isEqualToString:@"titleSelectColor"])
+    }else if([keyPath isEqualToString:@"titleColorSelect"])
     {
         [self updaeViewUI:^(UIButton *btn) {
-            [btn setTitleColor:self.titleSelectColor forState:UIControlStateSelected];
+            [btn setTitleColor:self.titleColorSelect forState:UIControlStateSelected];
         }];
     }else if([keyPath isEqualToString:@"titleFont"])
     {
@@ -92,6 +89,11 @@
                 btn.selected=NO;
             }
         }];
+    }else if([keyPath isEqualToString:@"bottomLineColor"]){
+        UIView * line = [self viewWithTag:1100];
+        line.backgroundColor = self.bottomLineColor;
+    } else if([keyPath isEqualToString:@"titleLineColor"]) {
+       self.bottomLine.backgroundColor = self.titleLineColor;
     }
     [self setNeedsLayout];
     [self setNeedsDisplay];
@@ -100,15 +102,12 @@
 
 -(void)updaeViewUI:(void(^)(UIButton * btn))complated {
     for (UIButton *btn in self.btnArrys) {
-        [btn setTitleColor:self.titleNomalColor forState:UIControlStateNormal];
-        [btn setTitleColor:self.titleSelectColor forState:UIControlStateSelected];
+        [btn setTitleColor:self.titleColorNormal forState:UIControlStateNormal];
+        [btn setTitleColor:self.titleColorSelect forState:UIControlStateSelected];
         btn.titleLabel.font=self.titleFont;
-        
         if (complated) {
            complated(btn);
         }
-        
-
     }
 }
 
@@ -132,27 +131,30 @@
         self.btnWidth = DDMWIDTH / 5;
     }
     
-    self.bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.menuHeight-2, self.btnWidth, 2)];
-    self.bottomLine.backgroundColor =  DDMColor(10, 108, 255);
+    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.menuHeight - 1, self.btnWidth * _titleArry.count, 1)];
+    line.backgroundColor = self.bottomLineColor;
+    line.tag = 1100;
+    [self.BackScrollView addSubview:line];
+    
+    self.bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, self.menuHeight - 1, self.btnWidth, 1)];
+    self.bottomLine.backgroundColor = self.titleLineColor;//DDMColor(10, 108, 255);
     [self.BackScrollView addSubview:self.bottomLine];
     
+
     // 重置横线位置
     [UIView animateWithDuration:0.25 animations:^{
-        self.bottomLine.frame = CGRectMake(0, self.menuHeight-2, self.btnWidth, 2);
+        self.bottomLine.frame = CGRectMake(0, self.menuHeight - 1, self.btnWidth, 1);
     }];
     
     self.BackScrollView.contentSize = CGSizeMake(self.btnWidth * _titleArry.count, self.menuHeight);
-    UIView *line = [[UIView alloc] initWithFrame:CGRectMake(0, self.menuHeight - 1, self.btnWidth * _titleArry.count, 1)];
-    line.backgroundColor = [UIColor lightGrayColor];
-    [self.BackScrollView addSubview:line];
     
     for (int i=0; i<_titleArry.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        btn.frame = CGRectMake(self.btnWidth * i, 0, self.btnWidth, self.menuHeight-2);
-        btn.tag = i+1;
+        btn.frame = CGRectMake(self.btnWidth * i, 0, self.btnWidth, self.menuHeight - 1);
+        btn.tag = i + 1;
         [btn setTitle:_titleArry[i] forState:UIControlStateNormal];
-        [btn setTitleColor:_titleNomalColor forState:UIControlStateNormal];
-        [btn setTitleColor:_titleSelectColor forState:UIControlStateSelected];
+        [btn setTitleColor:self.titleColorNormal forState:UIControlStateNormal];
+        [btn setTitleColor:self.titleColorSelect forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(btnTitleClick:) forControlEvents:UIControlEventTouchDown];
         [btn setBackgroundColor:[UIColor whiteColor]];
         btn.titleLabel.font = _titleFont;
@@ -190,12 +192,9 @@
         offsetX=maxOffsetX;
     }
     
-    [UIView animateWithDuration:.2 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         [self.BackScrollView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
-        self.bottomLine.frame=CGRectMake(sender.frame.origin.x, self.frame.size.height-2, sender.frame.size.width, 2);
-        
-    } completion:^(BOOL finished) {
-        
+        self.bottomLine.frame=CGRectMake(sender.frame.origin.x, self.frame.size.height - 1, sender.frame.size.width, 1);
     }];
 }
 @end

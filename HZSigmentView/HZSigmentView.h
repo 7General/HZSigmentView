@@ -36,24 +36,21 @@
 
 @property (nonatomic,strong) NSArray * titleArry;
 
-/**
- *  未选中时的文字颜色
- */
-@property (nonatomic,strong) UIColor * titleNomalColor;
+/** 未选中时的文字颜色 ,默认颜色DDMColor(80, 80, 80);*/
+@property (nonatomic,strong) UIColor * titleColorNormal;
 
-/**
- *  选中时的文字颜色
- */
-@property (nonatomic,strong) UIColor * titleSelectColor;
+/**选中时的文字颜色，默认颜色DDMColor(30, 137, 255)*/
+@property (nonatomic,strong) UIColor * titleColorSelect;
 
-/**
- *  字体大小，默认15
- */
+/**底线颜色*/
+@property (nonatomic, strong) UIColor * bottomLineColor;
+/**title底线颜色*/
+@property (nonatomic, strong) UIColor * titleLineColor;
+
+/**字体大小，默认15*/
 @property (nonatomic,strong) UIFont  * titleFont;
 
-/**
- *  默认选中的index=1，即第一个
- */
+/**默认选中的index=1，即第一个*/
 @property (nonatomic,assign) NSInteger defaultIndex;
 
 
