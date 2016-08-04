@@ -37,7 +37,7 @@
 //    
     self.sigment = [[HZSigmentView alloc] initWithOrgin:CGPointMake(0, 64) andHeight:44];
     self.sigment.delegate = self;
-    self.sigment.titleArry = @[@"核桃",@"苹果"];
+    self.sigment.titleArry = @[@"核桃",@"苹果",@"西游记",@"麦城"];
     
     // 设置标题选中时的颜色
 //    self.sigment.titleColorSelect = DDMColor(155, 0, 10);

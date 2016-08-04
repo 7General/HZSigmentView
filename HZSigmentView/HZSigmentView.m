@@ -150,14 +150,15 @@
     
     for (int i=0; i<_titleArry.count; i++) {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        btn.titleLabel.font = _titleFont;
+        [btn setTitle:_titleArry[i] forState:UIControlStateNormal];
         btn.frame = CGRectMake(self.btnWidth * i, 0, self.btnWidth, self.menuHeight - 1);
         btn.tag = i + 1;
-        [btn setTitle:_titleArry[i] forState:UIControlStateNormal];
+        
         [btn setTitleColor:self.titleColorNormal forState:UIControlStateNormal];
         [btn setTitleColor:self.titleColorSelect forState:UIControlStateSelected];
         [btn addTarget:self action:@selector(btnTitleClick:) forControlEvents:UIControlEventTouchDown];
         [btn setBackgroundColor:[UIColor whiteColor]];
-        btn.titleLabel.font = _titleFont;
         [self.BackScrollView addSubview:btn];
         
         [self.btnArrys addObject:btn];
