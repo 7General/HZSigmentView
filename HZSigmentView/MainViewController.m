@@ -50,6 +50,7 @@
     
 //    self.sigment.bottomLineColor = [UIColor yellowColor];
     self.sigment.titleLineColor = [UIColor grayColor];
+    self.sigment.defaultIndex = 3;
     [self.view addSubview:self.sigment];
 
     

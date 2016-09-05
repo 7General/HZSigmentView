@@ -12,8 +12,11 @@
 
 #define DDMColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 
+/**底部横线高度*/
+#define BottomLineHeight 10
 
 #import <UIKit/UIKit.h>
+
 
 @class HZSigmentView;
 
@@ -28,11 +31,17 @@
  */
 -(void)segment:(HZSigmentView *)sengment didSelectColumnIndex:(NSInteger)index;
 
+
+
+//-(void)segment:(HZSigmentView *)sengment scrollMenuViewSelectedIndex:(NSInteger)index;
+
 @end
 
 
 
 @interface HZSigmentView : UIView
+
+
 
 @property (nonatomic,strong) NSArray * titleArry;
 
@@ -60,5 +69,9 @@
 
 -(instancetype)initWithOrgin:(CGPoint)origin andHeight:(CGFloat)height;
 
+- (void)scrollMenuViewSelectedoffsetX:(NSInteger)selectIndex withOffsetType:(BOOL)types;
+
+/**修改下划线和控制器*/
+-(void)selectDefaultBottomAndVC:(NSInteger)DefaultIndex;
 
 @end
