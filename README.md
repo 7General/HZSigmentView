@@ -1,4 +1,7 @@
 # HZSigmentView
+### 20170615 修改item的宽度根据item的字体自适应
+
+
 横向、可以移动的sigmentView，使用简单
 ### 看看效果
 ![这里写图片描述](http://img.blog.csdn.net/20160526200722125)
